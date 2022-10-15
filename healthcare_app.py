@@ -19,19 +19,18 @@ UPLOAD_FOLDER = 'static/files'
 UPLOAD_FILE = 'static/files/patientdata.csv'
 app.config['UPLOAD_FOLDER'] =  UPLOAD_FOLDER
 
-@app.route('/',methods=['GET'])
+@app.route('/')
 @app.route('/index',methods=['GET'])
 def home():
     return render_template('index.html')
 
-
-@app.route('/datatraining',methods=['GET','POST'])
-def datatraining():
-    return render_template('datatraining.html',title='Data Training')
-
-@app.route('/patientprediction',methods=['GET','POST'])
+@app.route('/patientprediction',methods=['GET'])
 def patientprediction():
-    return render_template('patientprediction.html',title='Patient Prediction')
+    return render_template('patientprediction.html')
+
+@app.route('/datatraining',methods=['GET'])
+def datatraining():
+    return render_template('datatraining.html')
 
 @app.route('/predict',methods=['POST'])
 def predict():
@@ -39,19 +38,21 @@ def predict():
     For rendering results on HTML GUI
     '''
     if request.method == 'POST':
-        data = pd.read_csv(UPLOAD_FILE)
-        patid = request.form['patid']
-        x = data.loc[data['PatientID'] == patid]
-        #x.drop('PatientID', inplace=True, axis=1)
-        x = x.iloc[:, 1:]
         
-        inp = np.array(x).reshape((1, -1))
+        
+        data = pd.read_csv(UPLOAD_FILE)
+        patid = int(request.form['patid'])
+        x = data.loc[data['PatientID'] == patid]
+        x.drop('PatientID', inplace=True, axis=1)
+        print(x)
+        inp = np.array(x)
+        print(inp)
         prediction = model.predict(inp)
         output="no"
         if prediction[0]==1:
             output=""
      
-        return render_template('patientprediction.html', prediction_text="Patient " +patid+ " has " + output+" symtoms " +x+"of Sepsis", title='Patient Prediction' )
+        return render_template('patientprediction.html', prediction_text="Patient " + " has " + output+" symtoms " +"of Sepsis" )
   
 @app.route('/uploadfiles',methods=['POST'])
 def uploadfiles():
@@ -65,9 +66,9 @@ def uploadfiles():
               # set the file path
             uploaded_file.save(file_path)
               # save the file
-            return render_template('patientprediction.html', upload_text="Uploaded Successfully",title='Patient Prediction' )
+            return render_template('patientprediction.html', upload_text="Uploaded Successfully" )
         else:
-            return render_template('patientprediction.html', upload_text="Upload failed",title='Patient Prediction' )
+            return render_template('patientprediction.html', upload_text="Upload failed" )
         
    
 
