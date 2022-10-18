@@ -12,33 +12,7 @@
         
     <link rel="stylesheet" href="static/css/style.css">
  
-   <style>
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0px;
-  overflow: hidden;
-  background-color: lightgray;
-}
-
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  color: blue;
-  font-size:20px;
-  text-align: center;
-  padding: 10px 20px;
-  text-decoration: none;
-}
-
-li a:hover {
-  background-color: green;
-  color: white;
-}
-</style>
+   
 </head>
 
 
@@ -51,25 +25,39 @@ li a:hover {
         </div>   
    	  </div>
     </nav>
-    
+   </div>
     <div class="row">
-       <ul>
-          <li><a href="{{ url_for('home') }}">Home</a></li>
-          <li><a href="{{ url_for('patientprediction') }}">Patient Prediction</a></li>
-          <li><a href="{{ url_for('datatraining') }}">Data Training</a></li>
-        </ul>
-
+        <div class="col-sm-2">
+            <div class="card" style="background-color:Grey;color:White;">
+                <div class="card-body">
+                    <a class="card-title" href="/">Home</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="card" style="background-color:Grey;color:White;">
+                <div class="card-body">
+                    <a class="card-title" href="/patientprediction">Patient Prediction</a>
+                </div>
+            </div>
+        </div><div class="col-sm-2">
+            <div class="card" style="background-color:Grey;color:White;">
+                <div class="card-body">
+                    <a class="card-title" href="/datatraining">Training the Model</a>
+                </div>
+            </div>
+        </div>
     </div> 
     <br><br>
     
     <div class="container">
-        <form action="/uploadfiles" method="post" enctype="multipart/form-data">
+        <form action="/uploadtraindata" method="post" enctype="multipart/form-data">
                      
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card" style="background-color:Grey;color:White;">
                         <div class="card-body">
-                            <h5 class="card-title">Upload Patient Data for training</h5>
+                            <h5 class="card-title">Upload Patient Data</h5>
                         </div>
                     </div>
                 </div>
@@ -85,16 +73,32 @@ li a:hover {
                         </div>
                     </div>
                 </div>
-             </div>
-            <br>  
-            </form> 
-          
+             </div>         
+         <br>
+        </form> 
+          <form action="/train" method="post">    
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <input type="submit" value="train" class="btn btn-secondary">  
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>          
+         <br>
+        
+                   
+        </form>
 
     </div>
     <br>
     <h3>{{ prediction_text }}</h3>
     <br>
     
+    
+
 <!-- JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

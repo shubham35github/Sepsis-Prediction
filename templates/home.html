@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+	{% if title %}
+		<title>Healthcare App - {{ title }}</title>
+	{% else %}
+		<title>Healthcare App</title>
+	{% endif %}
+</head>
+<body>
+	
+	  <div class="bg-img">
+      
+
+        <div class="container">
+          <div class="topnav">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('patientprediction') }}">Patient Prediction</a>
+            <a href="{{ url_for('datatrain') }}">Training the Model</a>            
+          </div>   
+	      </div>
+	  </div>
+	  <div id="homepage">
+      <h1>Early Prediction of Sepsis</h1>
+    	
+        <div> 
+            <div class="one">
+                <a href="{{ url_for('patientprediction')}}"><div style="margin-top: 20px"><img style="max-width: 180px" src="/static/heartdisease.jpg"/></div><button id="sub" type="submit">Patient Prediction</button></a>
+            </div>
+            <div class="one">
+                <a href="{{ url_for('datatrain')}}"><div style="margin-top: 20px"><img style="max-width: 180px" src="/static/train.jpg"/></div><button id="sub" type="submit">Training the Model</button></a>
+            </div>            
+        </div>
+        <footer>  
+          <div style="font-size: 18px; padding-left: 20px">
+            Developed By: IOMT Team<br>
+            Hackathon 2022<br>
+          </div>
+        </footer>
+    </div>
+    </div>
+    
+    <style>
+
+       body {font-family: Arial, Helvetica, sans-serif;}
+        * {box-sizing: border-box;}
+        
+      .bg-img {
+          /* The image used */
+          background-image: url("/static/sepsisnew.jpg");
+
+          min-height: 1600px;
+
+          /* Center and scale the image nicely */
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          
+          background-size: 100% 100%;
+          
+          /* Needed to position the navbar */
+          position: relative;
+        }
+
+        /* Position the navbar container inside the image */
+        .container {
+          position: absolute;          
+          margin: 20px;
+          width: auto;
+        }
+
+        /* The navbar */
+        .topnav {
+          overflow: hidden;
+          background-color: black;
+        }
+
+        /* Navbar links */
+        .topnav a {
+          float: left;
+          color: #f2f2f2;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 18px;
+        }
+
+        .topnav a:hover {
+          background-color: #ddd;
+          color: black;
+        }
+
+        .centered {
+            position: absolute;
+            top: 60%;
+            left: 30%;
+            transform: translate(-50%, -50%);
+            color: brown;
+          }
+
+
+        #homepage {
+          padding: 20px;
+          border-spacing: 15px;
+          text-align: justify;
+          border-bottom-left-radius: 25px;
+          border-bottom-right-radius: 25px;
+        }
+
+        .img_holder img{
+            max-width: 100%; max-height: 100%;
+        }
+
+        .navbar{ 
+            background-color:#008081;
+        }
+
+        .one{
+            padding: 0px 10px;
+            display: inline-block;
+            margin: 4px 2px;
+        }
+
+        footer {
+          text-align: center;
+          padding: 3px;
+          background-color: white;
+          color: black;
+          position: relative;
+          margin-top : 110px;
+          width: 100%;
+
+        }
+
+        .a {
+          display: inline;
+          color: #32527B;
+        }        
+
+        button {
+          background-color: #CD5C5C;
+          border: none;
+          min-width:180px;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+        }
+    </style>   
+    
+</body>
+</html>

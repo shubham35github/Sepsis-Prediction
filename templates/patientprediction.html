@@ -34,7 +34,7 @@ li a {
 }
 
 li a:hover {
-  background-color: green;
+  background-color: orange;
   color: white;
 }
 </style>
@@ -55,8 +55,8 @@ li a:hover {
     <div class="row">
        <ul>
           <li><a href="{{ url_for('home') }}">Home</a></li>
-          <li><a href="{{ url_for('patientprediction') }}">Patient Prediction</a></li>
-          <li><a href="{{ url_for('datatraining') }}">Data Training</a></li>
+          <li><a href="/">Patient Prediction</a></li>
+          <li><a href="{{ url_for('datatrain') }}">Data Training</a></li>
         </ul>
 
     </div> 
@@ -88,16 +88,7 @@ li a:hover {
              </div>
             <br>  
             </form> 
-          <form action="/predict" method="post">   
-          <div class="row">
-              <div class="col-sm-12">
-                  <div class="card" style="background-color:Grey;color:White;">
-                      <div class="card-body">
-                          <h5 class="card-title">Enter Patient ID for Sepsis Prediction</h5>
-                      </div>
-                  </div>
-              </div>
-          </div>  
+          <form action="/predict" method="post">    
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card">
